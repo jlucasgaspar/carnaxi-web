@@ -59,7 +59,6 @@ export function RankedList() {
                     {index + 1}.
                   </p>
                   <Image
-                    // key={association.id}
                     src={`/assets/flags/${association.slug}.png`}
                     alt={association.name}
                     className="rounded-lg border border-gray-300 mx-1"
