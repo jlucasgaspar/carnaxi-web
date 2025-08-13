@@ -29,27 +29,33 @@ export default function Home() {
 
     setLoading(true);
 
-    const res = await fetch('/api/jackpot', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        rankedAssociations,
-      }),
-    });
+    try {
+      const res = await fetch('/api/jackpot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          rankedAssociations,
+        }),
+      });
 
-    if (!res.ok) {
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data?.errorMessage || "Algo deu errado na requisição");
+        return;
+      }
+
+      console.log(data);
+      toast.success("Bolão enviado!");
+    } catch (error) {
+      console.log(error);
+      toast.error("Algo deu errado ao enviar o bolão");
+    } finally {
       setLoading(false);
-      toast.error("Algo deu errado na requisição");
-      throw new Error(`Erro na requisição: ${res.status}`);
     }
-
-    const data = await res.json();
-    setLoading(false);
-    console.log(data);
-    toast.success("Bolão enviado!");
   }
 
   return (
@@ -70,6 +76,7 @@ export default function Home() {
             placeholder="Seu nome"
             className="mt-7 mb-3 h-12"
             onChange={event => setName(event.currentTarget.value)}
+            value={name}
           />
           <Button
             type="submit"
@@ -78,10 +85,9 @@ export default function Home() {
             disabled={!name || isLoading}
           >
             {isLoading
-              ? <LoaderCircle className="animate-spin w-5 h-5" />
-              : <>Enviar</>
+              ? <LoaderCircle className="animate-spin w-8 h-8" />
+              : <>Salvar</>
             }
-            Salvar
           </Button>
         </form>
       )}
