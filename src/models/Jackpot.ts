@@ -18,4 +18,4 @@ const JackpotSchema = new mongoose.Schema({
   versionKey: false,
 });
 
-export const Jackpot = mongoose.models.Jackpot || mongoose.model('jackpot', JackpotSchema);
+export const Jackpot = mongoose.model('jackpot', JackpotSchema);
