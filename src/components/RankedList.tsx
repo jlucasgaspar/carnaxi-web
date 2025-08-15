@@ -66,20 +66,22 @@ export function RankedList() {
                     height={60}
                   />
 
-                  <span className="font-medium text-gray-700">
+                  <span className="font-medium text-gray-700 text-sm">
                     {association.name}
                   </span>
 
                   {index > 0 && index < rankedAssociations.length - 1 && (
-                    <div className="ml-auto">
+                    <div className="ml-auto w-12 flex no-wrap">
                       <Button
                         variant="ghost"
+                        className="w-4"
                         onClick={() => handleClickArrowUp(association.id)}
                       >
                         <ArrowUp />
                       </Button>
                       <Button
                         variant="ghost"
+                        className="w-4"
                         onClick={() => handleClickArrowDown(association.id)}
                       >
                         <ArrowDown />

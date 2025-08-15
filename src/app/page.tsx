@@ -9,7 +9,7 @@ export default function Home() {
   const { unrankedAssociations, rankedAssociations } = useRankedAssociations();
 
   return (
-    <div className="h-full w-full px-8 py-4">
+    <div className="h-full w-full p-4">
       <RankedList />
 
       {unrankedAssociations.length && rankedAssociations.length
